@@ -12,6 +12,6 @@ echo "image list: ${images}"
 while IFS='/' read key value; do
     image=${key}/${value}
     docker pull ${image}
-    docker tag ${image} gotok8s/${value}
-    docker push gotok8s/${value}
+    docker tag ${image} ${REGISTRY}/${value}
+    docker push ${REGISTRY}/${value}
 done <<< ${images}
