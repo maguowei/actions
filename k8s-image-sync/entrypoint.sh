@@ -1,11 +1,13 @@
 #!/bin/bash
 
-RELEASE="$(curl -sSL https://dl.k8s.io/release/stable.txt)"
-echo "currect version ${RELEASE}"
+KUBERNETES_RELEASE_VERSION="$(curl -sSL https://dl.k8s.io/release/stable.txt)"
 
-curl -O -L https://storage.googleapis.com/kubernetes-release/release/${RELEASE}/bin/linux/amd64/kubeadm
+KUBERNETES_VERSION=${KUBERNETES_VERSION:=${KUBERNETES_RELEASE_VERSION}}
+echo "currect version ${KUBERNETES_VERSION}"
+
+curl -O -L https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_VERSION}/bin/linux/amd64/kubeadm
 chmod +x kubeadm
-images=$(./kubeadm config images list --kubernetes-version=${RELEASE})
+images=$(./kubeadm config images list --kubernetes-version=${KUBERNETES_VERSION})
 
 echo "image list: ${images}"
 
