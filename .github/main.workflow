@@ -1,9 +1,9 @@
 workflow "hello" {
   on = "push"
-  resolves = ["./hello/"]
+  resolves = ["hello world"]
 }
 
-action "./hello/" {
+action "hello world" {
   uses = "./hello/"
   args = "Hello World"
 }
