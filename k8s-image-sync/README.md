@@ -3,24 +3,23 @@
 ## Usage
 
 ```bash
-workflow "k8s image sync" {
-  resolves = ["sync"]
-  on = "schedule(0 */6 * * *)"
-}
-
-action "docker login" {
-  uses = "actions/docker/login@master"
-  secrets = [
-    "DOCKER_USERNAME",
-    "DOCKER_PASSWORD",
-  ]
-}
-
-action "sync" {
-  uses = "maguowei/actions/k8s-image-sync@master"
-  env = {
-    REGISTRY = "gotok8s"
-  }
-  needs = ["docker login"]
-}
+name: k8s image sync
+on:
+  schedules:
+  - cron: 0 */6 * * *
+jobs:
+  k8s-image-sync:
+    name: k8s image sync
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: docker login
+      uses: actions/docker/login@master
+      env:
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+    - name: sync
+      uses: maguowei/actions/k8s-image-sync@master
+      env:
+        REGISTRY: gotok8s
 ```

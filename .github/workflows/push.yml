@@ -1,0 +1,12 @@
+on: push
+name: hello
+jobs:
+  hello:
+    name: hello
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: hello world
+      uses: ./hello/
+      with:
+        args: Hello World
