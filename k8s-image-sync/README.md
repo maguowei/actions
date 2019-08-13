@@ -2,7 +2,7 @@
 
 ## Usage
 
-```bash
+```yaml
 name: k8s image sync
 on:
   schedules:
