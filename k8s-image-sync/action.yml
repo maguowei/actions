@@ -1,0 +1,9 @@
+name: k8s image sync
+description: An action for Kubernetes gcr.io image Sync
+author: imaguowei@gmail.com
+branding:
+  color: blue
+  icon: code
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
