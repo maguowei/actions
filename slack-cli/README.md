@@ -1,4 +1,4 @@
-# Slack Cli
+# Slack CLI
 
 ```bash
 # set token
