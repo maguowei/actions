@@ -12,14 +12,10 @@ jobs:
     name: k8s image sync
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: docker login
-      uses: actions/docker/login@master
-      env:
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
     - name: sync
       uses: maguowei/actions/k8s-image-sync@master
-      env:
-        REGISTRY: gotok8s
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: gotok8s
 ```

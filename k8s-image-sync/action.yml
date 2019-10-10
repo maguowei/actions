@@ -4,6 +4,20 @@ author: imaguowei@gmail.com
 branding:
   color: blue
   icon: code
+inputs:
+  username:
+    description: 'Username used to login docker registry'
+    required: true
+  password:
+    description: 'Password used to login docker registry'
+    required: true
+  registry:
+    description: 'Docker registry server address'
+    required: false
+    default: ''
+  repository:
+    description: 'docker image repository name'
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'

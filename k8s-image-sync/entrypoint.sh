@@ -11,9 +11,11 @@ images=$(./kubeadm config images list --kubernetes-version=${KUBERNETES_VERSION}
 
 echo "image list: ${images}"
 
+echo "${INPUT_PASSWORD}" | docker login -u ${INPUT_USERNAME} --password-stdin ${INPUT_REGISTRY}
+
 while IFS='/' read key value; do
     image=${key}/${value}
     docker pull ${image}
-    docker tag ${image} ${REGISTRY}/${value}
-    docker push ${REGISTRY}/${value}
+    docker tag ${image} ${INPUT_REPOSITORY}/${value}
+    docker push ${INPUT_REPOSITORY}/${value}
 done <<< ${images}
