@@ -16,6 +16,10 @@ echo "${INPUT_PASSWORD}" | docker login -u ${INPUT_USERNAME} --password-stdin ${
 while IFS='/' read key value; do
     image=${key}/${value}
     docker pull ${image}
-    docker tag ${image} ${INPUT_REPOSITORY}/${value}
+    new_image=${INPUT_REPOSITORY}/${value}
+    if [ -n "${REGISTRY}" ]; then
+        new_image=${INPUT_REGISTRY}/${IMAGE}
+    fi
+    docker tag ${image} ${new_image}
     docker push ${INPUT_REPOSITORY}/${value}
 done <<< ${images}
