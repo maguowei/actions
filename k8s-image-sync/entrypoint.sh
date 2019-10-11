@@ -2,7 +2,7 @@
 
 KUBERNETES_RELEASE_VERSION="$(curl -sSL https://dl.k8s.io/release/stable.txt)"
 
-KUBERNETES_VERSION=${KUBERNETES_VERSION:=${KUBERNETES_RELEASE_VERSION}}
+KUBERNETES_VERSION=${INPUT_KUBERNETES_VERSION:=${KUBERNETES_RELEASE_VERSION}}
 echo "currect version ${KUBERNETES_VERSION}"
 
 curl -O -L https://storage.googleapis.com/kubernetes-release/release/${KUBERNETES_VERSION}/bin/linux/amd64/kubeadm
