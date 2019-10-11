@@ -18,6 +18,9 @@ inputs:
   repository:
     description: 'docker image repository name'
     required: true
+  kubernetes_version:
+    description: 'set kubernetes version'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
