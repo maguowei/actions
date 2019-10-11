@@ -18,8 +18,8 @@ while IFS='/' read key value; do
     docker pull ${image}
     new_image=${INPUT_REPOSITORY}/${value}
     if [ -n "${INPUT_REGISTRY}" ]; then
-        new_image=${INPUT_REGISTRY}/${IMAGE}
+        new_image=${INPUT_REGISTRY}/${new_image}
     fi
     docker tag ${image} ${new_image}
-    docker push ${INPUT_REPOSITORY}/${value}
+    docker push ${new_image}
 done <<< ${images}
