@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.9-slim
 
 ENV PIP_INDEX_URL https://mirrors.aliyun.com/pypi/simple/
 ENV PIPENV_PYPI_MIRROR https://mirrors.aliyun.com/pypi/simple/
