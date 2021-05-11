@@ -16,7 +16,12 @@ echo "${INPUT_PASSWORD}" | docker login -u ${INPUT_USERNAME} --password-stdin ${
 while IFS='/' read key value; do
     image=${key}/${value}
     docker pull ${image}
+    if [[ "${value}" == "coredns/coredns"* ]]; then
+        value=${value/coredns\//""}
+    fi
+
     new_image=${INPUT_REPOSITORY}/${value}
+    
     if [ -n "${INPUT_REGISTRY}" ]; then
         new_image=${INPUT_REGISTRY}/${new_image}
     fi
